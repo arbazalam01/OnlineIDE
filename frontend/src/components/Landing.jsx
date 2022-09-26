@@ -68,7 +68,7 @@ const Landing = () => {
     };
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/run",
+        `${process.env.REACT_APP_API_URL}/api/run`,
         payload
       );
       // console.log(dataRes);
@@ -81,9 +81,12 @@ const Landing = () => {
   const checkStatus = async (token) => {
     // We will come to the implementation later in the code
     try {
-      const { data } = await axios.get("http://localhost:5000/api/status", {
-        params: { id: token },
-      });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/status`,
+        {
+          params: { id: token },
+        }
+      );
       // console.log("First Resp->", data);
       let status = data?.job.status;
 
@@ -161,7 +164,9 @@ const Landing = () => {
         draggable
         pauseOnHover
       />
-      <div className="h-4 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500"></div>
+      <div className="h-9 w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-center text-3xl">
+        Online IDE - Arbaz Alam
+      </div>
       <div className="flex flex-row">
         <div className="px-4 py-2">
           <LanguagesDropdown onSelectChange={onSelectChange} />
@@ -187,6 +192,7 @@ const Landing = () => {
               customInput={customInput}
               setCustomInput={setCustomInput}
             /> */}
+            <p>Press Cntrl+Enter to run code</p>
             <button
               onClick={handleCompile}
               disabled={!code}

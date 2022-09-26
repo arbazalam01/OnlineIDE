@@ -12,7 +12,7 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const CONNECTION_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASS}@cluster0.6p80aha.mongodb.net/?retryWrites=true&w=majority`;
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 app.use("/api", ideRoutes);
 
