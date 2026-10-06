@@ -1,0 +1,8 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "build"
+
+# CRA fails the build on lint warnings when CI=true (Netlify's default)
+[build.environment]
+  CI = "false"
